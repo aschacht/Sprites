@@ -10,21 +10,20 @@ import javax.imageio.ImageIO;
 
 import FlatLander.FlatLander;
 
-
 public class SkeletonTwo implements Sprites {
-	
-	int width =32;
-	int height=64;
-	
+
+	int width = 32;
+	int height = 64;
+
 	BufferedImage[] walkRight = new BufferedImage[6];
 	BufferedImage[] walkDown = new BufferedImage[6];
-	
+
 	BufferedImage[] walkUp = new BufferedImage[6];
 	BufferedImage[] walkLeft = new BufferedImage[6];
-	
-	int state =0;
-	
-	public SkeletonTwo(String filePath,Integer scale) throws IOException {
+
+	int state = 0;
+
+	public SkeletonTwo(String filePath, Integer scale) throws IOException {
 		BufferedImage spriteimageRight = ImageIO.read(new File(filePath));
 		int w = spriteimageRight.getWidth();
 		int h = spriteimageRight.getHeight();
@@ -36,63 +35,57 @@ public class SkeletonTwo implements Sprites {
 		AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
 		after = scaleOp.filter(spriteimageRight, after);
 
-		this.width = (int)(32.0*(scale/100.0));
-		this.height = (int)(64.0*(scale/100.0));
-		populateSpriteAnimation(after,scale); 
+		this.width = (int) (32.0 * (scale / 100.0));
+		this.height = (int) (64.0 * (scale / 100.0));
+		populateSpriteAnimation(after, scale);
 	}
-	
+
 	private void populateSpriteAnimation(BufferedImage right, Integer scale) {
-		for (int i = 3; i < walkRight.length+3; i++) {
-			
-			walkDown[i-3] = right.getSubimage(i*width, 0, width, height);
-			walkLeft[i-3] = right.getSubimage(i*width, (int)(64.0*(scale/100.0)), width, height);
-			walkRight[i-3] = right.getSubimage(i*width, (int)(128.0*(scale/100.0)), width, height);
-			walkUp[i-3] = right.getSubimage(i*width, (int)(192.0*(scale/100.0)), width, height);
+		for (int i = 3; i < walkRight.length + 3; i++) {
+
+			walkDown[i - 3] = right.getSubimage(i * width, 0, width, height);
+			walkLeft[i - 3] = right.getSubimage(i * width, (int) (64.0 * (scale / 100.0)), width, height);
+			walkRight[i - 3] = right.getSubimage(i * width, (int) (128.0 * (scale / 100.0)), width, height);
+			walkUp[i - 3] = right.getSubimage(i * width, (int) (192.0 * (scale / 100.0)), width, height);
 		}
-		
+
 	}
-	
-	
 
 	public BufferedImage update(FlatLander actor) {
 		BufferedImage walk;
-		if(actor.direction>=0 && actor.direction < 1.5708){
+		if (actor.direction >= 0 && actor.direction < 1.5708) {
 			walk = walkRight[state];
-		}else if (actor.direction > 4.71239 && actor.direction < 6.28319){
+		} else if (actor.direction > 4.71239 && actor.direction < 6.28319) {
 			walk = walkUp[state];
-		}else if(actor.direction > 1.5708 && actor.direction < 4.71239 ) {
-			walk = walkLeft[state];		
-		}else {
+		} else if (actor.direction > 1.5708 && actor.direction < 4.71239) {
+			walk = walkLeft[state];
+		} else {
 			walk = walkDown[state];
 		}
-		
+
 		return walk;
 	}
+
 	public int getWidth() {
-		
+
 		return width;
 	}
 
 	public int getHeight() {
-		
+
 		return height;
 	}
 
 	public void updateState() {
 		state++;
-		if(state>=3)state=0;
+		if (state >= 3)
+			state = 0;
 	}
 
-
 	@Override
-	public BufferedImage update(String key, boolean gameMode,boolean prompt) {
+	public BufferedImage update(String key, boolean gameMode, boolean prompt) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-	
-	
-	
-	
 }

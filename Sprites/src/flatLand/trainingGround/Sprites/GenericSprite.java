@@ -17,6 +17,7 @@ import animation.Animations;
 import animation.Asset;
 
 
+
 public class GenericSprite implements Sprites{
 
 	

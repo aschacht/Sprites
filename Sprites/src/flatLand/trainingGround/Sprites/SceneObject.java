@@ -189,6 +189,17 @@ public class SceneObject implements Sprites {
 			 after = platform;
 			 this.width = after.getWidth();
 			this.height = after.getHeight();
+		}else if(type.equalsIgnoreCase("Item")) {
+			BufferedImage platform = new BufferedImage(width2+10,16,BufferedImage.TYPE_INT_ARGB);
+			int[] left = new int[16 * 5];
+			 spriteimageRight.getRGB(0,0, 5, 16, left, 0, 5);
+			 platform.setRGB(0, 0, 5, 16, left, 0, 5);
+			 
+			 
+			 
+			 after = platform;
+			 this.width = after.getWidth();
+			this.height = after.getHeight();
 		}
 	}
 

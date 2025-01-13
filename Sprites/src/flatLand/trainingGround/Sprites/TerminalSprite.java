@@ -84,7 +84,7 @@ public class TerminalSprite extends LOG implements Sprites  {
 	private void addXAndY() {
 
 		try {
-			File myObj = new File("/home/wes/Wisper Tech 1.0/THEORY/GAMES/Sprites/resources/CharMappings");
+			File myObj = new File("/home/wes/git/repository20/Sprites/resources/CharMappings");
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNext()) {
 				String data = myReader.nextLine();
